@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2006-2011 OpenWrt.org
+# Copyright (C) 2006-2016 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -16,6 +16,9 @@ GLIBC_PATH:=
 
 ifeq ($(PKG_VERSION),2.23)
   PKG_MD5SUM:=0b1e4a240a01233f310b715a4d92c3be
+endif
+ifeq ($(PKG_VERSION),2.24)
+  PKG_MD5SUM:=3177c254b15eee0d0a81bfe480ea7e80
 endif
 
 
