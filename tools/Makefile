@@ -26,30 +26,24 @@ endif
 
 tools-$(BUILD_TOOLCHAIN) += gmp mpfr mpc libelf expat
 tools-y += m4 libtool autoconf automake flex bison pkg-config sed mklibs
-tools-y += sstrip make-ext4fs e2fsprogs mtd-utils mkimage
-tools-y += firmware-utils patch-image patch quilt yaffs2 padjffs2
+tools-y += sstrip make-ext4fs e2fsprogs 
+tools-y += patch quilt coreutils
 tools-y += mm-macros missing-macros xz cmake scons bc findutils gengetopt patchelf
-tools-y += mtools dosfstools
-tools-$(CONFIG_TARGET_orion_generic) += wrt350nv2-builder upslug2
-tools-$(CONFIG_powerpc) += upx
+tools-y += mtools
 tools-$(CONFIG_TARGET_x86) += qemu
-tools-$(CONFIG_TARGET_mxs) += elftosb sdimage
-tools-$(CONFIG_TARGET_ar71xx) += lzma-old squashfs
-tools-y += lzma squashfs4
-tools-$(BUILD_B43_TOOLS) += b43-tools
+tools-y += lzma
 tools-$(BUILD_ISL_CLOOG) += isl cloog
-tools-$(CONFIG_USE_SPARSE) += sparse
 tools-$(CONFIG_INSTALL_GCCGO) += go-bin
 tools-$(CONFIG_INSTALL_GCCGO) += go-src
-tools-$(CONFIG_INSTALL_GCCGO) += godep
+tools-$(CONFIG_INSTALL_GCCGO) += go-bootstrap
+# gofrontend can be used to upgrade gccgo in the current gcc version
+#tools-$(CONFIG_INSTALL_GCCGO) += gofrontend
 
 # builddir dependencies
 $(curdir)/bison/compile := $(curdir)/flex/install
 $(curdir)/flex/compile := $(curdir)/libtool/install
 $(curdir)/pkg-config/compile := $(curdir)/sed/install
 $(curdir)/libtool/compile := $(curdir)/sed/install $(curdir)/m4/install $(curdir)/autoconf/install $(curdir)/automake/install $(curdir)/missing-macros/install
-$(curdir)/squashfs/compile := $(curdir)/lzma-old/install
-$(curdir)/squashfs4/compile := $(curdir)/xz/install
 $(curdir)/quilt/compile := $(curdir)/sed/install $(curdir)/autoconf/install $(curdir)/findutils/install
 $(curdir)/autoconf/compile := $(curdir)/m4/install
 $(curdir)/automake/compile := $(curdir)/m4/install $(curdir)/autoconf/install $(curdir)/pkg-config/install $(curdir)/xz/install
@@ -58,29 +52,20 @@ $(curdir)/mpc/compile := $(curdir)/mpfr/install $(curdir)/gmp/install
 $(curdir)/mpfr/compile := $(curdir)/gmp/install
 $(curdir)/ppl/compile := $(curdir)/gmp/install
 $(curdir)/cloog/compile := $(curdir)/isl/install
-$(curdir)/mtd-utils/compile := $(curdir)/e2fsprogs/install $(curdir)/xz/install
-$(curdir)/mkimage/compile := $(curdir)/sed/install
 $(curdir)/mklibs/compile := $(curdir)/libtool/install
 $(curdir)/qemu/compile := $(curdir)/e2fsprogs/install
-$(curdir)/upslug2/compile := $(curdir)/libtool/install
 $(curdir)/mm-macros/compile := $(curdir)/libtool/install
 $(curdir)/missing-macros/compile := $(curdir)/autoconf/install
 $(curdir)/e2fsprogs/compile := $(curdir)/libtool/install
 $(curdir)/libelf/compile := $(curdir)/libtool/install
-$(curdir)/sdcc/compile := $(curdir)/bison/install
-$(curdir)/b43-tools/compile := $(curdir)/bison/install
-$(curdir)/padjffs2/compile := $(curdir)/findutils/install
 $(curdir)/isl/compile := $(curdir)/gmp/install
 $(curdir)/bc/compile := $(curdir)/bison/install
 $(curdir)/findutils/compile := $(curdir)/bison/install
 $(curdir)/gengetopt/compile := $(curdir)/libtool/install
 $(curdir)/patchelf/compile := $(curdir)/libtool/install
-$(curdir)/dosfstools/compile := $(curdir)/autoconf/install $(curdir)/automake/install
+$(curdir)/go-bin/compile := $(curdir)/go-bootstrap/install
 $(curdir)/go-src/compile := $(curdir)/go-bin/install
 $(curdir)/godep/compile := $(curdir)/go-bin/install
-ifneq ($(HOST_OS),Linux)
-  tools-y += coreutils
-endif
 
 
 ifneq ($(CONFIG_CCACHE)$(CONFIG_SDK),)
