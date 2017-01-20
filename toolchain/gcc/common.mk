@@ -32,6 +32,10 @@ ifeq ($(PKG_VERSION),5.4.0)
   PKG_MD5SUM:=4c626ac2a83ef30dfb9260e6f59c2b30
 endif
 
+ifeq ($(PKG_VERSION),6.3.0)
+  PKG_MD5SUM:=677a7623c7ef6ab99881bc4e048debb6
+endif
+
 PATCH_DIR=../patches/$(GCC_VERSION)
 
 BUGURL=https://dev.openwrt.org/
