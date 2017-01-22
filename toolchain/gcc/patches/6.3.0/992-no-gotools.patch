@@ -1,6 +1,6 @@
 --- a/configure
 +++ b/configure
-@@ -2835,7 +2835,7 @@
+@@ -2840,7 +2840,7 @@
  fi
  
  # Skipdirs are removed silently.
