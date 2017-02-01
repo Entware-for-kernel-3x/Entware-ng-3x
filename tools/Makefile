@@ -34,7 +34,7 @@ tools-$(CONFIG_TARGET_x86) += qemu
 tools-y += lzma
 tools-$(BUILD_ISL_CLOOG) += isl cloog
 tools-$(CONFIG_INSTALL_GCCGO) += go-bin
-tools-$(CONFIG_INSTALL_GCCGO) += go-src
+#tools-$(CONFIG_INSTALL_GCCGO) += go-src
 tools-$(CONFIG_INSTALL_GCCGO) += go-bootstrap
 # gofrontend can be used to upgrade gccgo in the current gcc version
 #tools-$(CONFIG_INSTALL_GCCGO) += gofrontend
@@ -64,8 +64,8 @@ $(curdir)/findutils/compile := $(curdir)/bison/install
 $(curdir)/gengetopt/compile := $(curdir)/libtool/install
 $(curdir)/patchelf/compile := $(curdir)/libtool/install
 $(curdir)/go-bin/compile := $(curdir)/go-bootstrap/install
-$(curdir)/go-src/compile := $(curdir)/go-bin/install
-$(curdir)/godep/compile := $(curdir)/go-bin/install
+#$(curdir)/go-src/compile := $(curdir)/go-bin/install
+#$(curdir)/godep/compile := $(curdir)/go-bin/install
 
 
 ifneq ($(CONFIG_CCACHE)$(CONFIG_SDK),)
